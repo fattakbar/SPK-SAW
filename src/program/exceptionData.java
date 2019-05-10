@@ -7,8 +7,16 @@ package program;
 
 /**
  *
- * @author Bruvwev
+ * @author Fattahul_Akbar
  */
-public class exceptionData {
+public class exceptionData extends Exception{
     
+    public exceptionData(){
+        
+    }
+    
+    public String showMessageError(){
+        String notice = "Silahkan isi data dengan lengkap..";
+        return notice;
+    }  
 }
