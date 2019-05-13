@@ -5,6 +5,12 @@
  */
 package program;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Fattahul_Akbar
@@ -19,6 +25,7 @@ public class login extends javax.swing.JFrame {
     
     public login() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -59,6 +66,11 @@ public class login extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         btn_login.setText("LOGIN");
+        btn_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,6 +135,24 @@ public class login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
+        // TODO add your handling code here:
+        try{
+            ResultSet res = conn.ambilData("SELECT * FROM tbl_user WHERE " +
+            "username='"+txt_username.getText()+"' and password='"+txt_password.getText()+"'");
+            
+            if (res.next()){
+                MenuUtama menuUtama = new MenuUtama();
+                this.setVisible(false);
+                menuUtama.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "Username atau Password Salah!", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }catch (SQLException ex){
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_loginActionPerformed
 
     /**
      * @param args the command line arguments
