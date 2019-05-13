@@ -82,6 +82,11 @@ public class MenuUtama extends javax.swing.JFrame {
         });
 
         jButton4.setText("DATA MAHASISWA");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("PROSES DATA");
 
@@ -138,6 +143,12 @@ public class MenuUtama extends javax.swing.JFrame {
         tentang tentang_ = new tentang();
         tentang_.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        DataMahasiswa dataMahasiswa = new DataMahasiswa();
+        dataMahasiswa.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
