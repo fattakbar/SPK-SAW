@@ -5,17 +5,28 @@
  */
 package program;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Fattahul_Akbar
  */
 public class DataBobot extends javax.swing.JFrame {
+    
+    DefaultTableModel tblBobot;
+
+    koneksi conn= new koneksi();
 
     /**
      * Creates new form DataBobot
      */
     public DataBobot() {
         initComponents();
+        setLocationRelativeTo(this);
+        tampilBobot();
     }
 
     /**
@@ -43,7 +54,7 @@ public class DataBobot extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_data_mahasiswa = new javax.swing.JTable();
+        tbl_bobot = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,7 +171,7 @@ public class DataBobot extends javax.swing.JFrame {
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
-        tbl_data_mahasiswa.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_bobot.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -171,7 +182,7 @@ public class DataBobot extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbl_data_mahasiswa);
+        jScrollPane1.setViewportView(tbl_bobot);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -235,21 +246,21 @@ public class DataBobot extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
-        try{
-            cekKosong();
-        } catch (exceptionData ex){
-            JOptionPane.showMessageDialog(null, ex.showMessageError());
-        }
-        simpan();
-        tabelMahasiswa();
+//        try{
+//            cekKosong();
+//        } catch (exceptionData ex){
+//            JOptionPane.showMessageDialog(null, ex.showMessageError());
+//        }
+//        simpan();
+//        tabelMahasiswa();
     }//GEN-LAST:event_btn_simpanActionPerformed
 
     private void txt_b4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_b4KeyTyped
-        inputAngka(evt);
+        
     }//GEN-LAST:event_txt_b4KeyTyped
 
     private void txt_b3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_b3KeyTyped
-        inputAngka(evt);
+        
     }//GEN-LAST:event_txt_b3KeyTyped
 
     private void txt_b2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_b2KeyReleased
@@ -257,16 +268,39 @@ public class DataBobot extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_b2KeyReleased
 
     private void txt_b2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_b2KeyTyped
-        char c = evt.getKeyChar();
-        if(Character.isLetter(c)&&!evt.isAltDown()){
-            evt.consume();
-        }
+        
     }//GEN-LAST:event_txt_b2KeyTyped
 
     private void txt_b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_b1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_b1ActionPerformed
 
+    private void clear(){
+        txt_b1.setText("");
+        txt_b2.setText((""));
+        txt_b3.setText("");
+        txt_b4.setText("");
+    }
+    
+    public void tampilBobot(){
+       tblBobot = new DefaultTableModel();
+       tblBobot.addColumn("Bobot 1");
+       tblBobot.addColumn("Bobot 2");
+       tblBobot.addColumn("Bobot 3");
+       tblBobot.addColumn("Bobot 4");
+       tbl_bobot.setModel(tblBobot);
+        try {
+         ResultSet res = conn.ambilData("SELECT * FROM tbl_bobot");
+        while (res.next()){
+                    tblBobot.addRow(new Object[]{res.getString(1),res.getString(2),res.getString(3),res.getString(4)});
+                } 
+      
+        tbl_bobot.setModel(tblBobot);
+          } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(this, ex);
+        }   
+     }
+    
     /**
      * @param args the command line arguments
      */
@@ -315,7 +349,7 @@ public class DataBobot extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable tbl_data_mahasiswa;
+    private javax.swing.JTable tbl_bobot;
     private javax.swing.JTextField txt_b1;
     private javax.swing.JTextField txt_b2;
     private javax.swing.JTextField txt_b3;
