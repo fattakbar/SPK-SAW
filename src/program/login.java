@@ -65,6 +65,18 @@ public class login extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
+        txt_username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_usernameActionPerformed(evt);
+            }
+        });
+
+        txt_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_passwordActionPerformed(evt);
+            }
+        });
+
         btn_login.setText("LOGIN");
         btn_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +165,16 @@ public class login extends javax.swing.JFrame {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_loginActionPerformed
+
+    private void txt_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameActionPerformed
+        // TODO add your handling code here:
+        btn_loginActionPerformed(evt);
+    }//GEN-LAST:event_txt_usernameActionPerformed
+
+    private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
+        // TODO add your handling code here:
+        btn_loginActionPerformed(evt);
+    }//GEN-LAST:event_txt_passwordActionPerformed
 
     /**
      * @param args the command line arguments
