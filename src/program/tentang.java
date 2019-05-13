@@ -7,7 +7,7 @@ package program;
 
 /**
  *
- * @author Bruvwev
+ * @author Fattahul_Akbar
  */
 public class tentang extends javax.swing.JFrame {
 
