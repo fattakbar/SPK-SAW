@@ -14,6 +14,9 @@ public class login extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
+    
+    koneksi conn= new koneksi();
+    
     public login() {
         initComponents();
     }
