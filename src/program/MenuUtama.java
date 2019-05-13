@@ -7,7 +7,7 @@ package program;
 
 /**
  *
- * @author Bruvwev
+ * @author Fattahul_Akbar
  */
 public class MenuUtama extends javax.swing.JFrame {
 

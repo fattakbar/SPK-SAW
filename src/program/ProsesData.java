@@ -127,6 +127,11 @@ public class ProsesData extends javax.swing.JFrame {
         jLabel3.setText("TABEL NORMALISASI");
 
         btn_kesimpulan.setText("KESIMPULAN");
+        btn_kesimpulan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_kesimpulanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -209,6 +214,12 @@ public class ProsesData extends javax.swing.JFrame {
         normalisasi();
     }//GEN-LAST:event_btn_normalisasiActionPerformed
 
+    private void btn_kesimpulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kesimpulanActionPerformed
+        // TODO add your handling code here:
+        kesimpulan kesimpulan_ = new kesimpulan();
+        kesimpulan_.setVisible(true);
+    }//GEN-LAST:event_btn_kesimpulanActionPerformed
+    
     public void tabelModelMahasiswa(){
        tabelDataMahasiswa = new DefaultTableModel();
        tabelDataMahasiswa.addColumn("Nama");
