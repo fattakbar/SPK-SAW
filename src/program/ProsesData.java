@@ -5,17 +5,33 @@
  */
 package program;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Fattahul_Akbar
  */
 public class ProsesData extends javax.swing.JFrame {
+    
+    DefaultTableModel tabelDataMahasiswa;
+    DefaultTableModel tabelNormalisasi;
+    DefaultTableModel tabelPeringkat;
+    
+    koneksi conn= new koneksi();
 
     /**
      * Creates new form ProsesData
      */
     public ProsesData() {
         initComponents();
+        setLocationRelativeTo(this);
+        tabelModelMahasiswa();
     }
 
     /**
@@ -27,22 +43,293 @@ public class ProsesData extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabel_mahasiswa = new javax.swing.JTable();
+        btn_peringkat = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabel_peringkat = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabel_normalisasi = new javax.swing.JTable();
+        btn_normalisasi = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        btn_kesimpulan = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel1.setText("DAFTAR MAHASISWA");
+
+        tabel_mahasiswa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabel_mahasiswa);
+
+        btn_peringkat.setText("Tentukan Peringkat");
+        btn_peringkat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_peringkatActionPerformed(evt);
+            }
+        });
+
+        tabel_peringkat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tabel_peringkat);
+
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel2.setText("TABEL PERINGKAT");
+
+        tabel_normalisasi.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tabel_normalisasi);
+
+        btn_normalisasi.setText("Normalisasikan");
+        btn_normalisasi.setMaximumSize(new java.awt.Dimension(125, 23));
+        btn_normalisasi.setMinimumSize(new java.awt.Dimension(125, 23));
+        btn_normalisasi.setPreferredSize(new java.awt.Dimension(125, 23));
+        btn_normalisasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_normalisasiActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jLabel3.setText("TABEL NORMALISASI");
+
+        btn_kesimpulan.setText("KESIMPULAN");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(163, 163, 163)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(29, 29, 29)
+                        .addComponent(btn_peringkat)))
+                .addGap(35, 35, 35))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(231, 231, 231)
+                .addComponent(btn_kesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(149, 149, 149))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(btn_normalisasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(btn_peringkat, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(btn_normalisasi, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(btn_kesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(114, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_peringkatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_peringkatActionPerformed
+        // TODO add your handling code here:
+        cariperingkat();
+    }//GEN-LAST:event_btn_peringkatActionPerformed
+
+    private void btn_normalisasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_normalisasiActionPerformed
+        // TODO add your handling code here:
+        normalisasi();
+    }//GEN-LAST:event_btn_normalisasiActionPerformed
+
+    public void tabelModelMahasiswa(){
+       tabelDataMahasiswa = new DefaultTableModel();
+       tabelDataMahasiswa.addColumn("Nama");
+       tabelDataMahasiswa.addColumn("IPK");
+       tabelDataMahasiswa.addColumn("Nilai Tes Program");
+       tabelDataMahasiswa.addColumn("Semester");
+       tabelDataMahasiswa.addColumn("Total SKS");
+       tabel_mahasiswa.setModel(tabelDataMahasiswa);
+        try {
+         ResultSet res = conn.ambilData("SELECT * FROM tbl_kriteria ");
+        while (res.next()){
+                    tabelDataMahasiswa.addRow(new Object[]{res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5)});
+                } 
+      
+        tabel_mahasiswa.setModel(tabelDataMahasiswa);
+          } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(this, ex);
+        }   
+     }
+    
+    public void tabelModelNormalisasi(){
+       tabelNormalisasi = new DefaultTableModel();
+       tabelNormalisasi.addColumn("Nama");
+       tabelNormalisasi.addColumn("IPK");
+       tabelNormalisasi.addColumn("Nilai Tes Program");
+       tabelNormalisasi.addColumn("Semester");
+       tabelNormalisasi.addColumn("Total SKS");
+       tabel_normalisasi.setModel(tabelNormalisasi);
+    }
+    
+    public void tabelmodelPeringkat(){
+        try {
+            tabelPeringkat = new DefaultTableModel();
+            tabelPeringkat.addColumn("Nama");
+            tabelPeringkat.addColumn("Nilai");
+            
+            tabel_peringkat.setModel(tabelPeringkat);
+            ResultSet res = conn.ambilData("SELECT * FROM tbl_peringkat ORDER BY nilai desc");
+             while (res.next()){
+                         tabelPeringkat.addRow(new Object[]{res.getString(1),res.getString(2)}); 
+                     }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProsesData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void cariperingkat(){
+        try{
+            LinkedList mm = new LinkedList();
+            ResultSet res3 = conn.ambilData("SELECT * FROM tbl_bobot");
+            tabelmodelPeringkat();
+            while (res3.next()){
+                 mm.add(res3.getString(1));
+                 mm.add(res3.getString(2));
+                 mm.add(res3.getString(3));
+                 mm.add(res3.getString(4));
+            }
+            for (int t = 0; t < tabel_normalisasi.getRowCount(); t++) {
+                String sql = "DELETE FROM tbl_peringkat WHERE Nama= Nama";
+                conn.simpanData(sql);
+            }
+            for (int x = 0; x < tabel_normalisasi.getRowCount(); x++){
+                double r1;
+                double r2;
+                double r3;
+                double r4;
+                double w;
+                
+                r1 = (Float.valueOf(tabel_normalisasi.getValueAt(x, 1).toString())*Float.valueOf(mm.get(0).toString()));
+                r2=(Float.valueOf(tabel_normalisasi.getValueAt(x, 2).toString())*Float.valueOf(mm.get(1).toString()));
+                r3=(Float.valueOf(tabel_normalisasi.getValueAt(x, 3).toString())*Float.valueOf(mm.get(2).toString()));
+                r4=(Float.valueOf(tabel_normalisasi.getValueAt(x, 4).toString())*Float.valueOf(mm.get(3).toString()));
+                w=r1+r2+r3+r4;
+                
+                String sql = "insert into tbl_peringkat  values"+"(  '"+tabel_normalisasi.getValueAt(x, 0).toString()+"' , "+" '"+w+"' )";
+                conn.simpanData(sql);
+            }
+            tabelModelNormalisasi();
+        } catch (SQLException ex){
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    }
+    
+    public  void normalisasi(){
+        LinkedList max = new LinkedList();
+        LinkedList mm = new LinkedList();
+        
+        try{
+            ResultSet res = conn.ambilData("select max(C1),"+ 
+                "max(C2), "+
+                "max(C3), "+
+                "max(C4)"+
+                "from "+
+                "tbl_kriteria ");
+            
+            while (res.next()){
+                max.add(res.getString(1));
+                max.add(res.getString(2));
+                max.add(res.getString(3));
+                max.add(res.getString(4));
+            }
+            ResultSet res2 = conn.ambilData("select *"+"from "+"tbl_kriteria ");
+            tabelModelNormalisasi();
+            
+            while (res2.next()){
+                tabelNormalisasi.addRow(new Object[]{res2.getString(1),
+                    (res2.getFloat(2)/Float.valueOf(max.get(0).toString())),
+                    (res2.getFloat(3)/Float.valueOf(max.get(1).toString())),
+                    (res2.getFloat(4)/Float.valueOf(max.get(2).toString())),
+                    (res2.getFloat(5)/Float.valueOf(max.get(3).toString())),
+                    (Float.valueOf(max.get(3).toString())/res2.getFloat(5))});
+            }
+        } catch (SQLException ex){
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    }
+    
+    public boolean isCellEditable(int row, int column){
+        return false;//This causes all cells to be not editable
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -79,5 +366,18 @@ public class ProsesData extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_kesimpulan;
+    private javax.swing.JButton btn_normalisasi;
+    private javax.swing.JButton btn_peringkat;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tabel_mahasiswa;
+    private javax.swing.JTable tabel_normalisasi;
+    private javax.swing.JTable tabel_peringkat;
     // End of variables declaration//GEN-END:variables
 }

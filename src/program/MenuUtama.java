@@ -89,6 +89,11 @@ public class MenuUtama extends javax.swing.JFrame {
         });
 
         jButton5.setText("PROSES DATA");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -149,6 +154,12 @@ public class MenuUtama extends javax.swing.JFrame {
         DataMahasiswa dataMahasiswa = new DataMahasiswa();
         dataMahasiswa.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        ProsesData prosesData = new ProsesData();
+        prosesData.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
