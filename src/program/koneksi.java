@@ -25,7 +25,7 @@ public class koneksi {
     public static Connection getconnetion(){
         if(koneksi==null){
             try{
-                String server="jdbc:mysql://localhost:3306/db_ss";
+                String server="jdbc:mysql://localhost:3306/db_spk";
                 String user="root";
                 String password="";
                 Class.forName("com.mysql.jdbc.Driver");
